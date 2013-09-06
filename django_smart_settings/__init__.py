@@ -10,7 +10,7 @@ def _load_settings_from_module(module_name, destination):
 
 def _import_default_settings(destination, module):
 	try:
-		_load_settings_from_module(modulem destination)
+		_load_settings_from_module(module, destination)
 	except ImportError:
 		import sys, traceback
 		sys.stderr.write("Error loading default settings\n\n")
@@ -46,8 +46,8 @@ def _import_variable_settings(destination):
 		traceback.print_exc()
 		raise
 
-def configure(destination):
-	_import_default_settings(destination, module='default')
+def configure(destination, module='default'):
+	_import_default_settings(destination, module)
 	_import_machine_settings(destination)
 	_import_user_settings(destination)
 	_import_variable_settings(destination)
