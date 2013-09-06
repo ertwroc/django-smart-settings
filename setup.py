@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
 	name='django-smart-settings',
-	version='0.1.0',
+	version='0.1.2',
 	author='ERt',
 	author_email='ert.wroc@gmail.com',
 	packages=['django_smart_settings'],

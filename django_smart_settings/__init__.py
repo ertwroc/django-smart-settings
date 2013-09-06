@@ -8,6 +8,15 @@ def _load_settings_from_module(module_name, destination):
 		if name.isupper():
 			destination[name] = getattr(module, name)
 
+def _import_default_settings(destination, module):
+	try:
+		_load_settings_from_module(modulem destination)
+	except ImportError:
+		import sys, traceback
+		sys.stderr.write("Error loading default settings\n\n")
+		traceback.print_exc()
+		raise
+
 def _import_machine_settings(destination):
 	try:
 		_load_settings_from_module(socket.gethostname(), destination)
@@ -38,6 +47,7 @@ def _import_variable_settings(destination):
 		raise
 
 def configure(destination):
+	_import_default_settings(destination, module='default')
 	_import_machine_settings(destination)
 	_import_user_settings(destination)
 	_import_variable_settings(destination)
